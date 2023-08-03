@@ -8,7 +8,7 @@ const getEmailData = (to, name, template) => {
   switch (template) {
     case "welcome":
       data = {
-        from: '보내는 사람 이름 <userId@gmail.com>',
+        // from: '보내는 사람 이름 <userId@gmail.com>',
         to,
         subject: `Welcome ${name}`,
         html: welcome()
@@ -17,7 +17,7 @@ const getEmailData = (to, name, template) => {
 
     case "goodbye":
       data = {
-        from: '보내는 사람 이름 <userId@gmail.com>',
+        // from: '보내는 사람 이름 <userId@gmail.com>',
         to,
         subject: `Goodbye ${name}`,
         html: goodbye()
@@ -32,17 +32,17 @@ const getEmailData = (to, name, template) => {
 }
 
 const sendMail = (to, name, type) => {
-  const transporter = mailer.createTransporter({
+  const transporter = mailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'nchq2123@naver.com',
-      pass: process.env.EMAIL_PASSWORD
+      user: 'limlamz2123@gmail.com',
+      pass: process.env.EMAIL_PASSWORDD
     }
   })
   
   const mail = getEmailData(to, name, type);
   
-  transporter.sendEmail(mail, (error, response) => {
+  transporter.sendMail(mail, (error, response) => {
     if (error) {
       console.log(error);
     } else {
